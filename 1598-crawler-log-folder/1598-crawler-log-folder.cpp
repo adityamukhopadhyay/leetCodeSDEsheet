@@ -1,16 +1,17 @@
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        int folderDepth = 0;
-        int n = logs.size();
         
-        for (int i=0; i<n; i++){
+        int folderDepth = 0;
+        
+        for (const auto& log : logs){
             
-            if (logs[i] == "../") {
+            if (log == "../") {
                 folderDepth = max(0, folderDepth - 1);
             }
             // Increase depth if the log is not 'stay in the current directory
-            else if (logs[i] != "./") {
+            
+            else if (log != "./") {
                 // Go down one directory
                 ++folderDepth;
             }
