@@ -1,22 +1,23 @@
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        stack <string> logStack;
+        int folderDepth = 0;
         int n = logs.size();
         
         for (int i=0; i<n; i++){
             
-            if (logs[i]!="../"){
-                logStack.push(logs[i]);
+            if (logs[i] == "../") {
+                folderDepth = max(0, folderDepth - 1);
             }
-            
-            
-            if(!logStack.empty() && (logs[i]=="../" || logStack.top()=="./")){
-                logStack.pop();
+            // Increase depth if the log is not 'stay in the current directory
+            else if (logs[i] != "./") {
+                // Go down one directory
+                ++folderDepth;
             }
+            // Ignore "./" operations as they don't change the current folder
             
         }
         
-        return logStack.size();
+        return folderDepth;
     }
 };
