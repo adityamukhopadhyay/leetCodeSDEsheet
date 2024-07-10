@@ -6,6 +6,7 @@ public:
         int n=nums.size();
         for(int i=0;i<n;i++){
             cursum=max(nums[i],cursum+nums[i]);
+            // maxsum works as a pointer that points to maxsum till now
             if(maxsum<cursum){
                 maxsum=cursum;
             }
